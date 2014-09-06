@@ -43,7 +43,10 @@ test('\nsemvish clean tests', function(t) {
         [' 1-rc1  ', '1.0.0-rc1'],
         [' 1rc1  ', '1.0.0-rc1'],
         ['  V1  ', '1.0.0'],
-        ['rc1', '0.0.0-rc1']
+        ['rc1', '0.0.0-rc1'],
+        ['_v--1.2.0', '1.2.0'],
+        ['==v==1.2', '1.2.0'],
+        ['   --v==1.2   ', '1.2.0']
     ].forEach(function(tuple) {
         var range = tuple[0];
         var version = tuple[1];

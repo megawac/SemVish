@@ -10,7 +10,7 @@ A versioning interpretter that can process multiple versioning schemes such as
 - `<Max>-<release>`
 - `<release>`
 
-Passes [843 tests](http://snag.gy/ENBzm.jpg) (mostly from node-semver)
+Passes [849 tests](http://snag.gy/ENBzm.jpg) (mostly from node-semver)
 
 #### Install
 
@@ -39,6 +39,13 @@ clean("1") // => 1.0.0
 clean("1-rc1") // => 1.0.0-rc1
 clean("1rc1") // => 1.0.0-rc1
 clean("alpha1") // => 0.0.0-alpha1
+
+// Handes prefixs and trims strings for all inputs (pretty much every stupid scheme I've ever seen)
+clean("v-1.2.0     ") // => 1.2.0
+clean("   v1.2   ") // => 1.2.0
+clean("==v==1.2") // => 1.2.0
+clean("_v--1.2.0") // => 1.2.0
+clean("V1.2") // => 1.2.0
 ```
 
 * `valid` is some string semverish?
