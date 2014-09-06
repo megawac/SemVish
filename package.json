@@ -1,0 +1,22 @@
+{
+  "name": "jsdelivr-versioning",
+  "version": "0.1.0",
+  "description": "Multiple version scheme parser and comparitor",
+  "main": "index.js",
+  "scripts": {
+    "test": "prova test/**.js"
+  },
+  "keywords": [
+    "semver",
+    "versioning"
+  ],
+  "author": "megawac",
+  "license": "wtfpl (wtfpl.net)",
+  "dependencies": {
+    "semver": "^3.0.1",
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "prova": "^1.14.0"
+  }
+}
