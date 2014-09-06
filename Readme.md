@@ -10,7 +10,7 @@ A versioning interpretter that can process multiple versioning schemes such as
 - `<Max>-<release>`
 - `<release>`
 
-Passes [882 tests](http://snag.gy/ENBzm.jpg) (mostly from node-semver)
+Passes [890 tests](http://snag.gy/r7qSa.jpg) (mostly from node-semver)
 
 #### Install
 
