@@ -20,10 +20,10 @@
   },
   "dependencies": {
     "semver": "^3.0.1",
+    "trim": "0.0.1",
     "underscore": "1.7.0"
   },
   "devDependencies": {
     "prova": "^1.14.0"
   }
 }
-
