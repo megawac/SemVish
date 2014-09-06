@@ -12,11 +12,16 @@
   ],
   "author": "megawac",
   "license": "wtfpl (wtfpl.net)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/megawac/semvish"
+  },
   "dependencies": {
     "semver": "^3.0.1",
-    "underscore": "^1.6.0"
+    "underscore": "1.7.0"
   },
   "devDependencies": {
     "prova": "^1.14.0"
   }
 }
+
