@@ -147,3 +147,28 @@ test('SemVish comparison tests', function(t) {
   });
   t.end();
 });
+
+// See https://github.com/scottschiller/SoundManager2/releases
+test('Handle poorly formatted release date style versions', function(t) {
+  [
+    ['V2.97a.20140901', 'V2.97a.20131201', true],
+    ['  V2.97a.20130512    ', 'V2.97a.20130101'],
+    ['V2.97a.20131201 ', '--V--2.97a.20110706 ']
+  ].forEach(function(v) {
+    var v0 = v[0];
+    var v1 = v[1];
+    var loose = v[2];
+    t.ok(gt(v0, v1, loose), "gt('" + v0 + "', '" + v1 + "')");
+    t.ok(lt(v1, v0, loose), "lt('" + v1 + "', '" + v0 + "')");
+    t.ok(!gt(v1, v0, loose), "!gt('" + v1 + "', '" + v0 + "')");
+    t.ok(!lt(v0, v1, loose), "!lt('" + v0 + "', '" + v1 + "')");
+    t.ok(eq(v0, v0, loose), "eq('" + v0 + "', '" + v0 + "')");
+    t.ok(eq(v1, v1, loose), "eq('" + v1 + "', '" + v1 + "')");
+    t.ok(neq(v0, v1, loose), "neq('" + v0 + "', '" + v1 + "')");
+    t.ok(cmp(v1, '==', v1, loose), "cmp('" + v1 + "' == '" + v1 + "')");
+    t.ok(cmp(v0, '>=', v1, loose), "cmp('" + v0 + "' >= '" + v1 + "')");
+    t.ok(cmp(v1, '<=', v0, loose), "cmp('" + v1 + "' <= '" + v0 + "')");
+    t.ok(cmp(v0, '!=', v1, loose), "cmp('" + v0 + "' != '" + v1 + "')");
+  });
+  t.end();
+});

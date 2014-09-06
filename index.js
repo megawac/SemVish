@@ -51,7 +51,8 @@ SemVish.cmp = function(a, op, b, loose) {
 
 SemVish.clean = function(version, loose) {
 	try {
-		return SemVer(interpretVersion(trim(version).replace(/^[=\-_vV]+/, "")), loose).version;
+		version = trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s]*/i, "");
+		return SemVer(interpretVersion(version), loose).version;
 	} catch(o_O) {
 		return null;
 	}

@@ -10,7 +10,7 @@ A versioning interpretter that can process multiple versioning schemes such as
 - `<Max>-<release>`
 - `<release>`
 
-Passes [849 tests](http://snag.gy/ENBzm.jpg) (mostly from node-semver)
+Passes [882 tests](http://snag.gy/ENBzm.jpg) (mostly from node-semver)
 
 #### Install
 
@@ -46,6 +46,7 @@ clean("   v1.2   ") // => 1.2.0
 clean("==v==1.2") // => 1.2.0
 clean("_v--1.2.0") // => 1.2.0
 clean("V1.2") // => 1.2.0
+clean("-VERSION-1.2 ") // => 1.2.0
 ```
 
 * `valid` is some string semverish?
