@@ -12,6 +12,12 @@ A versioning interpretter that can process multiple versioning schemes such as
 
 Passes [843 tests](http://snag.gy/ENBzm.jpg) (mostly from node-semver)
 
+#### Install
+
+```sh
+$ [sudo] npm install semvish
+```
+
 ### Motivation
 
 [jsDelivr](http://jsdelivr.com) [needed a multi version comparitor scheme](https://github.com/jsdelivr/libgrabber/issues/24)
@@ -32,6 +38,7 @@ clean("1.2alpha1") // => 1.2.0-alpha1
 clean("1") // => 1.0.0
 clean("1-rc1") // => 1.0.0-rc1
 clean("1rc1") // => 1.0.0-rc1
+clean("alpha1") // => 0.0.0-alpha1
 ```
 
 * `valid` is some string semverish?
