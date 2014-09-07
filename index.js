@@ -1,6 +1,7 @@
 var _ = require("underscore");
 var trim = require("trim");
 var SemVer = require("semver");
+var create = require("object-create");
 
 function interpretVersion(version) {
 	// Handle pre-releases
@@ -30,7 +31,7 @@ function SemVish(version, loose) {
 	return _.isString(version) ? SemVer(SemVish.clean(version), loose) : SemVer(version, loose);
 }
 
-SemVish.prototype = Object.create(SemVer.prototype);
+SemVish.prototype = create(SemVer.prototype);
 
 _.each(["comparePre", "compareMain"], function(semverFunc) {
 	SemVish.prototype[semverFunc] = function(other) {
@@ -51,7 +52,7 @@ SemVish.cmp = function(a, op, b, loose) {
 
 SemVish.clean = function(version, loose) {
 	try {
-		version = trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s]*/i, "");
+		version = trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s.]*/i, "");
 		return SemVer(interpretVersion(version), loose).version;
 	} catch(o_O) {
 		return null;

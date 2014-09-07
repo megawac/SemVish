@@ -1,4 +1,4 @@
-SemVish [![License](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)](http://www.wtfpl.net/)
+SemVish [![Build Status](https://travis-ci.org/megawac/SemVish.svg?branch=master)](https://travis-ci.org/megawac/SemVish) [![License](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)](http://www.wtfpl.net/)
 ===========
 
 A versioning interpretter that can process multiple versioning schemes such as
@@ -10,7 +10,7 @@ A versioning interpretter that can process multiple versioning schemes such as
 - `<Max>-<release>`
 - `<release>`
 
-Passes [890 tests](http://snag.gy/r7qSa.jpg) (mostly from node-semver)
+Passes [903 tests](https://travis-ci.org/megawac/SemVish) (mostly from node-semver)
 
 #### Install
 
@@ -47,6 +47,7 @@ clean("==v==1.2") // => 1.2.0
 clean("_v--1.2.0") // => 1.2.0
 clean("V1.2") // => 1.2.0
 clean("-VERSION-1.2 ") // => 1.2.0
+clean("v.1.2") // => 1.2.0
 ```
 
 * `valid` is some string semverish?

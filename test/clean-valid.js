@@ -36,7 +36,9 @@ createChecker('clean supports **Version** prefix', [
     ['Version 1.2', '1.2.0'],
     ['VERSION-1.2 ', '1.2.0'],
     ['VERSION==1.2-4 ', '1.2.0-4'],
-    ['==VERSION==1.2-pre ', '1.2.0-pre']
+    ['==VERSION==1.2-pre ', '1.2.0-pre'],
+    ['Version.1.2.3', '1.2.3'],
+    ['=VerSion.=1.2.3-rc1', '1.2.3-rc1']
 ]);
 
 
@@ -57,5 +59,22 @@ createChecker('semvish clean tests', [
     ['rc1', '0.0.0-rc1'],
     ['_v--1.2.0', '1.2.0'],
     ['==v==1.2', '1.2.0'],
-    ['   --v==1.2   ', '1.2.0']
+    ['   --v==1.2   ', '1.2.0'],
+    ['  v.1.2.3', '1.2.3'],
+    ['v.332.15-a1', '332.15.0-a1']
 ]);
+
+test('\ninvalid version numbers', function(t) {
+  ['1.2.3.4',
+   'NOT VALID',
+   1.2,
+   null,
+   'Infinity.NaN.Infinity'
+  ].forEach(function(v) {
+    t.throws(function() {
+      new SemVer(v);
+    }, {name:'TypeError', message:'Invalid Version: ' + v});
+  });
+
+  t.end();
+});

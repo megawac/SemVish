@@ -1,6 +1,6 @@
 {
   "name": "semvish",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Multiple version scheme parser and comparitor",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "url": "https://github.com/megawac/semvish"
   },
   "dependencies": {
-    "semver": "^3.0.1",
+    "object-create": "0.1.0",
+    "semver": "~3.0.1",
     "trim": "0.0.1",
     "underscore": "1.7.0"
   },
