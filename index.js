@@ -1,3 +1,5 @@
+/* jshint eqnull:true */
+
 var _ = require("underscore");
 var trim = require("trim");
 var SemVer = require("semver");
@@ -35,7 +37,7 @@ SemVish.prototype = create(SemVer.prototype);
 
 _.each(["comparePre", "compareMain"], function(semverFunc) {
 	SemVish.prototype[semverFunc] = function(other) {
-		return Semver.prototype[semverFunc].call(this, SemVish(other));
+		return SemVer.prototype[semverFunc].call(this, SemVish(other));
 	};
 });
 
