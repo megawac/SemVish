@@ -10,7 +10,7 @@ A versioning interpretter that can process multiple versioning schemes such as
 - `<Max>-<release>`
 - `<release>`
 
-Passes [903 tests](https://travis-ci.org/megawac/SemVish) (mostly from node-semver)
+Passes [1153 tests](https://travis-ci.org/megawac/SemVish) (mostly from node-semver)
 
 #### Install
 
