@@ -70,7 +70,10 @@ createSuite('node-semver comparison tests', [
     ['r99', 'r98'],
     ['r69', 'r9'],
     ['123.2.1-r69', '123.2.1-r7'],
-    ['foo123', 'foo99']
+    ['foo123', 'foo99'],
+    ['foo', 'Foo'],
+    ['foo123', 'fOO123'],
+    ['FOo.1321', 'FOO.1321']
 ]);
 
 test('node-semver equality tests', function(t) {
@@ -113,7 +116,9 @@ test('node-semver equality tests', function(t) {
         ['1.2.3+build', ' = 1.2.3+otherbuild', true],
         ['1.2.3-beta+build', '1.2.3-beta+otherbuild'],
         ['1.2.3+build', '1.2.3+otherbuild'],
-        ['  v1.2.3+build', '1.2.3+otherbuild']
+        ['  v1.2.3+build', '1.2.3+otherbuild'],
+        ['FOO.1321', 'FOO.1321'],
+        ['r62.1.1.1.1.1', 'r62.1.1.1.1.1']
     ], function(v) {
         var v0 = v[0];
         var v1 = v[1];
