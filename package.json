@@ -21,8 +21,8 @@
   "dependencies": {
     "object-create": "0.1.0",
     "semver": "~3.0.1",
-    "trim": "0.0.1",
-    "underscore": "1.7.0"
+    "underscore": "1.7.0",
+    "underscore.string": "megawac/underscore.string#semvish"
   },
   "devDependencies": {
     "jshint": "^2.5.5",

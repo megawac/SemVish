@@ -66,7 +66,11 @@ createSuite('node-semver comparison tests', [
     ['1.2.3-a.10', '1.2.3-a.5'],
     ['1.2.3-a.b', '1.2.3-a.5'],
     ['1.2.3-a.b', '1.2.3-a'],
-    ['1.2.3-a.b.c.10.d.5', '1.2.3-a.b.c.5.d.100']
+    ['1.2.3-a.b.c.10.d.5', '1.2.3-a.b.c.5.d.100'],
+    ['r99', 'r98'],
+    ['r69', 'r9'],
+    ['123.2.1-r69', '123.2.1-r7'],
+    ['foo123', 'foo99']
 ]);
 
 test('node-semver equality tests', function(t) {

@@ -2,7 +2,7 @@
 "use strict";
 
 var _ = require("underscore");
-var trim = require("trim");
+var str = require("underscore.string");
 var SemVer = require("semver");
 var create = require("object-create");
 
@@ -38,15 +38,26 @@ function SemVish(version, loose) {
 
 SemVish.prototype = create(SemVer.prototype);
 
-_.each(["comparePre", "compareMain"], function(semverFunc) {
-	SemVish.prototype[semverFunc] = function(other) {
-		return SemVer.prototype[semverFunc].call(this, new SemVish(other));
-	};
+_.extend(SemVish.prototype, {
+	compare: function(other) {
+		other = new SemVish(other);
+		return this.compareMain(other) || this.comparePre(other);
+	},
+	compareMain: function(other) {
+		return SemVer.prototype.compareMain.call(this, new SemVish(other));
+	},
+	comparePre: function(other) {
+		other = new SemVish(other);
+		if (!this.prerelease.length || !other.prerelease.length) {
+			return !!other.prerelease.length - !!this.prerelease.length;
+		}
+		return str.naturalCmp(this.prerelease.join("."), other.prerelease.join("."));
+	}
 });
 
 _.extend(SemVish, _.reduce(['compare', 'rcompare', 'gt', 'lt', 'eq', 'neq', 'gte', 'lte'], function(memo, semverFunc) {
 	memo[semverFunc] = function(a, b, loose) {
-		return SemVer[semverFunc](SemVish.clean(a, loose), SemVish.clean(b, loose), loose);
+		return SemVer[semverFunc](SemVish(a, loose), SemVish(b, loose), loose);
 	};
 	return memo;
 }, {}));
@@ -57,7 +68,7 @@ SemVish.cmp = function(a, op, b, loose) {
 
 SemVish.clean = function(version, loose) {
 	try {
-		version = trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s.]*/i, "");
+		version = str.trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s.]*/i, "");
 		return SemVer(interpretVersion(version), loose).version;
 	} catch(o_O) {
 		return null;
