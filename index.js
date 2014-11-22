@@ -1,10 +1,10 @@
 /* jshint eqnull:true */
 "use strict";
 
-var _ = require("underscore");
 var str = require("underscore.string");
 var SemVer = require("semver");
 var create = require("object-create");
+var assign = require('object-assign');
 
 function interpretVersion(version) {
 	// Handle pre-releases
@@ -33,12 +33,12 @@ function interpretVersion(version) {
 function SemVish(version, loose) {
 	if (version instanceof SemVish) return version;
 	if (!(this instanceof SemVer)) return new SemVish(version, loose);
-	return _.extend(this, new SemVer(SemVish.clean(version), loose));
+	return assign(this, new SemVer(SemVish.clean(version), loose));
 }
 
 SemVish.prototype = create(SemVer.prototype);
 
-_.extend(SemVish.prototype, {
+assign(SemVish.prototype, {
 	compare: function(other) {
 		other = new SemVish(other);
 		return this.compareMain(other) || this.comparePre(other);
@@ -55,7 +55,7 @@ _.extend(SemVish.prototype, {
 	}
 });
 
-_.extend(SemVish, _.reduce(['compare', 'rcompare', 'gt', 'lt', 'eq', 'neq', 'gte', 'lte'], function(memo, semverFunc) {
+assign(SemVish, ['compare', 'rcompare', 'gt', 'lt', 'eq', 'neq', 'gte', 'lte'].reduce(function(memo, semverFunc) {
 	memo[semverFunc] = function(a, b, loose) {
 		return SemVer[semverFunc](SemVish(a, loose), SemVish(b, loose), loose);
 	};

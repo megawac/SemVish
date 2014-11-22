@@ -1,6 +1,6 @@
 {
   "name": "semvish",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Multiple version scheme parser and comparitor",
   "main": "index.js",
   "scripts": {
@@ -19,13 +19,14 @@
     "url": "https://github.com/megawac/semvish"
   },
   "dependencies": {
+    "object-assign": "^2.0.0",
     "object-create": "0.1.0",
     "semver": "~3.0.1",
-    "underscore": "1.7.0",
     "underscore.string": "megawac/underscore.string#semvish"
   },
   "devDependencies": {
     "jshint": "^2.5.5",
-    "prova": "^1.14.0"
+    "prova": "^1.14.0",
+    "underscore": "1.7.0"
   }
 }
