@@ -4,7 +4,6 @@
 var _ = require("underscore");
 var str = require("underscore.string");
 var SemVer = require("semver");
-var create = require("object-create");
 
 function interpretVersion(version) {
 	// Handle pre-releases
