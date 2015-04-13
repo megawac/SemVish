@@ -33,12 +33,10 @@ function interpretVersion(version) {
 function SemVish(version, loose) {
 	if (version instanceof SemVish) return version;
 	if (!(this instanceof SemVer)) return new SemVish(version, loose);
-	return _.extend(this, new SemVer(SemVish.clean(version), loose));
+	return _.assign(this, new SemVer(SemVish.clean(version), loose));
 }
 
-SemVish.prototype = create(SemVer.prototype);
-
-_.extend(SemVish.prototype, {
+SemVish.prototype = _.create(SemVer.prototype, {
 	compare: function(other) {
 		other = new SemVish(other);
 		return this.compareMain(other) || this.comparePre(other);
@@ -55,12 +53,11 @@ _.extend(SemVish.prototype, {
 	}
 });
 
-_.extend(SemVish, _.reduce(['compare', 'rcompare', 'gt', 'lt', 'eq', 'neq', 'gte', 'lte'], function(memo, semverFunc) {
-	memo[semverFunc] = function(a, b, loose) {
+_.each(['compare', 'rcompare', 'gt', 'lt', 'eq', 'neq', 'gte', 'lte'], function(semverFunc) {
+	SemVish[semverFunc] = function(a, b, loose) {
 		return SemVer[semverFunc](SemVish(a, loose), SemVish(b, loose), loose);
 	};
-	return memo;
-}, {}));
+});
 
 SemVish.cmp = function(a, op, b, loose) {
 	return SemVer.cmp(SemVish(a, loose), op, SemVish(b, loose), loose);
