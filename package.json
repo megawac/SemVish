@@ -1,6 +1,6 @@
 {
   "name": "semvish",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Multiple version scheme parser and comparitor",
   "main": "index.js",
   "scripts": {
