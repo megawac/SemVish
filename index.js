@@ -1,32 +1,33 @@
 /* jshint eqnull:true */
-"use strict";
+'use strict';
 
-var _ = require("underscore");
-var str = require("underscore.string");
-var SemVer = require("semver");
+var _ = require('underscore');
+var SemVer = require('semver');
+var naturalCmp = require('underscore.string/naturalCmp');
+var trim = require('underscore.string/trim');
 
 function interpretVersion(version) {
 	// Handle pre-releases
-	var preRelease = "";
-	var preReleaseIndex = version.indexOf("-");
+	var preRelease = '';
+	var preReleaseIndex = version.indexOf('-');
 
 	// Handle pre-releases without the dash (poor format)
 	if (preReleaseIndex < 0 && (preReleaseIndex = version.search(/[a-z]/i)) >= 0) {
-		preRelease = "-" + version.slice(preReleaseIndex);
-		version = preReleaseIndex === 0 ? "0" : version.slice(0, Math.max(0, preReleaseIndex));
+		preRelease = '-' + version.slice(preReleaseIndex);
+		version = preReleaseIndex === 0 ? '0' : version.slice(0, Math.max(0, preReleaseIndex));
 	}
 	else if (preReleaseIndex >= 0) {
-		preRelease = "-" + version.slice(preReleaseIndex + 1);
+		preRelease = '-' + version.slice(preReleaseIndex + 1);
 		version = version.slice(0, preReleaseIndex);
 	}
 
 	// Handle <Max>.<Min> versioning schemes
-	var split = version.split(".");
+	var split = version.split('.');
 	while (split.length < 3) {
 		split.push(0);
 	}
 
-	return split.join(".") + preRelease;
+	return split.join('.') + preRelease;
 }
 
 function SemVish(version, loose) {
@@ -48,7 +49,7 @@ SemVish.prototype = _.create(SemVer.prototype, {
 		if (!this.prerelease.length || !other.prerelease.length) {
 			return !!other.prerelease.length - !!this.prerelease.length;
 		}
-		return str.naturalCmp(this.prerelease.join("."), other.prerelease.join("."));
+		return naturalCmp(this.prerelease.join('.'), other.prerelease.join('.'));
 	}
 });
 
@@ -64,7 +65,7 @@ SemVish.cmp = function(a, op, b, loose) {
 
 SemVish.clean = function(version, loose) {
 	try {
-		version = str.trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s.]*/i, "");
+		version = trim(version).replace(/^[=\-_\s]*(v(ersion)?)?[=\-_\s.]*/i, '');
 		return SemVer(interpretVersion(version), loose).version;
 	} catch(o_O) {
 		return null;
