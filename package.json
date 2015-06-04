@@ -19,7 +19,7 @@
     "url": "https://github.com/megawac/semvish"
   },
   "dependencies": {
-    "semver": "~3.0.1",
+    "semver": "^4.3.6",
     "underscore": "~1.8.3",
     "underscore.string": "~3.0.0"
   },

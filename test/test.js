@@ -37,7 +37,7 @@ function createGTSuite(message, tests) {
     });
 }
 
-function createEqaulitySuite(message, tests) {
+function createEqualitySuite(message, tests) {
     test(message, function(t) {
         _.each(tests, function(v) {
             var v0 = v[0];
@@ -47,8 +47,8 @@ function createEqaulitySuite(message, tests) {
             t.ok(!neq(v0, v1, loose), '!neq(\'' + v0 + '\', \'' + v1 + '\')');
             t.ok(cmp(v0, '==', v1, loose), 'cmp(' + v0 + '==' + v1 + ')');
             t.ok(!cmp(v0, '!=', v1, loose), '!cmp(' + v0 + '!=' + v1 + ')');
-            t.ok(!cmp(v0, '===', v1, loose), '!cmp(' + v0 + '===' + v1 + ')');
-            t.ok(cmp(v0, '!==', v1, loose), 'cmp(' + v0 + '!==' + v1 + ')');
+            t.ok(cmp(v0, '===', v1, loose), '!cmp(' + v0 + '===' + v1 + ')');
+            t.ok(!cmp(v0, '!==', v1, loose), 'cmp(' + v0 + '!==' + v1 + ')');
             t.ok(!gt(v0, v1, loose), '!gt(\'' + v0 + '\', \'' + v1 + '\')');
             t.ok(gte(v0, v1, loose), 'gte(\'' + v0 + '\', \'' + v1 + '\')');
             t.ok(!lt(v0, v1, loose), '!lt(\'' + v0 + '\', \'' + v1 + '\')');
@@ -97,7 +97,7 @@ createGTSuite('node-semver comparison tests', [
     ['123.2.1-r69', '123.2.1-r7']
 ]);
 
-createEqaulitySuite('node-semver equality tests', [
+createEqualitySuite('node-semver equality tests', [
     // [version1, version2]
     // version1 should be equivalent to version2
     ['1.2.3', 'v1.2.3', true],
@@ -166,7 +166,7 @@ createGTSuite('Handle poorly formatted release date style versions', [
 ]);
 
 // See #1
-createEqaulitySuite('Semvish equality tests', [
+createEqualitySuite('Semvish equality tests', [
     ['FOO.1321', 'FOO.1321'],
     ['r62.1.1.1.1.1', 'r62.1.1.1.1.1'],
     [' \tr12   \n', '\n  r12   \t']
