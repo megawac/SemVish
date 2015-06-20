@@ -1,7 +1,7 @@
 var test = require('prova');
 var clean = require('../').clean;
 var valid = require('../').valid;
-var _ = require("underscore");
+var _ = require('underscore');
 
 function createChecker(msg, tests) {
     test(msg, function(t) {

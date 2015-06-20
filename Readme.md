@@ -52,6 +52,8 @@ clean("v.1.2") // => 1.2.0
 
 * `valid` is some string semverish?
 
+* `satisfies(version, range, loose)`: whethere a given (SemVish) version matches a semver range - currently only supports semver ranges so `^2015-20-15` and similar will not work, instead use `^0.0.0-2015-20-15`.
+
 * `gt(v1, v2)`: `v1 > v2`
 * `gte(v1, v2)`: `v1 >= v2`
 * `lt(v1, v2)`: `v1 < v2`

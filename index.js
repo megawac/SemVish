@@ -76,4 +76,8 @@ SemVish.valid = function(version, loose) {
 	return SemVish.clean(version, loose) != null;
 };
 
+SemVish.satisfies = function satisfies(version, range, loose) {
+  return SemVer.satisfies(new SemVish(version, loose), range, loose);
+};
+
 module.exports = SemVish;
